@@ -1,42 +1,94 @@
+/* Body Styling */
 body {
-    font-family: 'Times New Roman', Times, serif;
-    background-color: red;
+    font-family: 'Arial', sans-serif; /* Accessible, sans-serif font for readability */
+    background-color: #f4f1ea; /* Soft beige background for a cozy look */
+    color: #2b2b2b; /* Dark gray for high contrast */
+    margin: 0;
+    padding: 0;
   }
   
+  /* Headings */
   h2 {
     margin: 20px;
-    color: darkred;
-    font-size: 24px;
-    font-family: 'Comic Sans MS', 'Comic Sans', cursive;
+    color: #004d40; /* Deep green for a Christmas vibe */
+    font-size: 2rem; /* Larger, scalable font size */
+    text-align: center;
   }
   
   h4 {
-    font-family: 'Comic Sans MS', 'Comic Sans', cursive;
+    font-family: 'Arial', sans-serif;
+    font-size: 1.2rem;
+    text-align: center;
+    color: #00695c; /* Softer green for harmony with the heading */
+    margin-bottom: 20px;
   }
   
+  /* Calendar Container */
   .calendar-container {
     display: grid;
-    grid-template-columns: repeat(5, 1fr); 
-    gap: 2px;
-    padding: 10px;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 10px; /* Larger gaps for better visibility */
+    padding: 20px;
     max-width: 800px;
     margin: 0 auto;
-    background-color: tomato;
-    border-radius: 20px;
+    background-color: #c62828; /* Deep red for a Christmas theme */
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Soft shadow for depth */
   }
   
+  /* Calendar Boxes */
   .calendar-box {
-    background-color: #ff0000;
-    color: #ff9999;
-    font-size: 8px;
+    background-color: #f1e7cd; /* Creamy beige for contrast with red */
+    color: #283593; /* Blue text for a complementary Christmas color */
+    font-size: 1rem;
     text-align: left;
-    padding: 2px;
-    border: 1px dashed black;
+    padding: 10px;
+    border: 1px solid #283593; /* Blue border for consistency */
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  
+  .calendar-box:hover {
+    transform: scale(1.05); /* Interactive scaling */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Highlight on hover */
   }
   
   .calendar-box p {
     margin: 0;
     text-align: center;
-    font-size: 12px;
+    font-size: 1rem;
+    font-weight: bold;
+    color: #004d40; /* Dark green for text contrast */
+  }
+  
+  /* Accessibility: Focus Outline */
+  .calendar-box:focus {
+    outline: 3px solid #ffeb3b; /* Yellow focus outline for accessibility */
+    outline-offset: 2px;
+  }
+  
+  /* Mobile Responsiveness */
+  @media (max-width: 600px) {
+    h2 {
+      font-size: 1.5rem;
+    }
+  
+    h4 {
+      font-size: 1rem;
+    }
+  
+    .calendar-container {
+      grid-template-columns: repeat(3, 1fr); /* Adjust columns for smaller screens */
+    }
+  
+    .calendar-box {
+      font-size: 0.9rem;
+      padding: 8px;
+    }
   }
   
