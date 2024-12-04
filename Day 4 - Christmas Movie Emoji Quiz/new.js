@@ -1,7 +1,7 @@
-import { films } from './data.js';
+import { films } from '/data.js';
 
 // DOM elements
-const guessInputForm = document.getElementById('guess-input-form');
+const guessInputForm = document.getElementById('guess-input');
 const guessInput = document.getElementById('guess-input');
 const messageContainer = document.querySelector('.message-container');
 const emojiCluesContainer = document.querySelector('.emoji-clues-container');
