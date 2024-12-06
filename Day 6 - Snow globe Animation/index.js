@@ -39,15 +39,41 @@ function createSnowflake() {
 // Create snowflakes every 100ms
 let snowInterval = setInterval(createSnowflake, 100);
 
-// Add button to control snow
+// Add styled button to control snow
 const button = document.createElement('button');
 button.textContent = 'Toggle Snow';
 button.style.margin = '20px';
+button.style.padding = '12px 24px';
+button.style.fontSize = '18px';
+button.style.backgroundColor = '#4a90e2';
+button.style.color = 'white';
+button.style.border = 'none';
+button.style.borderRadius = '25px';
+button.style.cursor = 'pointer';
+button.style.transition = 'all 0.3s ease';
+button.style.boxShadow = '0 4px 6px rgba(0,0,0,0.1)';
 document.body.appendChild(button);
+
+// Add hover effects
+button.addEventListener('mouseover', () => {
+    button.style.transform = 'scale(1.05)';
+    button.style.backgroundColor = '#357abd';
+});
+
+button.addEventListener('mouseout', () => {
+    button.style.transform = 'scale(1)';
+    button.style.backgroundColor = '#4a90e2';
+});
 
 let isSnowing = true;
 button.addEventListener('click', () => {
+    // Add click animation
+    button.style.transform = 'scale(0.95)';
+    setTimeout(() => button.style.transform = 'scale(1)', 150);
+
     if (isSnowing) {
+        button.textContent = 'Start Snow';
+        button.style.backgroundColor = '#e24a4a';
         // Gradually slow down and stop snow
         let interval = 100;
         const slowDown = setInterval(() => {
@@ -60,6 +86,8 @@ button.addEventListener('click', () => {
             }
         }, 500);
     } else {
+        button.textContent = 'Toggle Snow';
+        button.style.backgroundColor = '#4a90e2';
         // Start snow again
         snowInterval = setInterval(createSnowflake, 100);
         snowGlobe.classList.add('shake');
