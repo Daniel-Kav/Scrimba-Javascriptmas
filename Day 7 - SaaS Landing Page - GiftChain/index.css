@@ -22,6 +22,10 @@ Link to Figma: https://scrimba.com/links/santa-saas-figma
 body {
   line-height: 1.5;
   color: #333;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 0.5rem;
+  position: relative;
 }
 
 img {
@@ -32,13 +36,15 @@ img {
 /* Navigation styles */
 nav {
   background-color: var(--red);
-  padding: 1rem 5%;
+  padding: 1rem 2rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
   position: fixed;
   width: 100%;
-  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  max-width: 1280px;
   z-index: 1000;
 }
 
@@ -1000,4 +1006,60 @@ nav img {
 
 .animated {
   animation: fadeIn 0.5s ease-out forwards;
+}
+
+/* Update section padding */
+header,
+#product-section,
+#solution,
+#about,
+#pricing,
+#customer {
+  padding-left: 2rem;
+  padding-right: 2rem;
+}
+
+/* Update container widths */
+.solution-content,
+.about-content,
+.pricing-cards,
+.testimonials,
+.footer-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+/* Update responsive design */
+@media (max-width: 1280px) {
+  body {
+    padding: 0;
+  }
+  
+  nav {
+    padding: 1rem 1.5rem;
+  }
+  
+  header,
+  #product-section,
+  #solution,
+  #about,
+  #pricing,
+  #customer {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  nav,
+  header,
+  #product-section,
+  #solution,
+  #about,
+  #pricing,
+  #customer {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
 }
