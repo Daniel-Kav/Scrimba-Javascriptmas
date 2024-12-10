@@ -1,3 +1,267 @@
-html, body {
-    margin: 0;
+html,
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  min-width: 100vw;
+}
+
+.background {
+  width: 360px;
+  height: 225px;
+  background-image: repeating-linear-gradient(
+    45deg,
+    rgb(0, 72, 0) 0%,
+    rgb(0, 72, 0) 10%,
+    rgb(88, 88, 88) 10%,
+    rgb(88, 88, 88) 20%
+  );
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 0;
+}
+
+.character {
+  z-index: 1;
+  position: relative;
+  top: -10px;
+}
+
+.hat-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.hat-main {
+  display: flex;
+  transform: translateY(20px);
+  width: 95px;
+  height: 55px;
+  border-radius: 100px 0 0 0;
+  background-color: red;
+}
+
+.hat-brim {
+  background-color: lightgray;
+  width: 110px;
+  height: 30px;
+  border-radius: 5px;
+  z-index: 1;
+}
+
+.hat-shadow {
+  background-color: maroon;
+  width: 40px;
+  height: 40px;
+  border-radius: 100%;
+  position: absolute;
+  right: -10px;
+  top: 0;
+  transform: translateY(50%);
+  z-index: -1;
+}
+
+.hat-pom {
+  background-color: white;
+  width: 50px;
+  height: 50px;
+  border-radius: 100%;
+  position: absolute;
+  right: -30px;
+  bottom: -5px;
+  z-index: -1;
+}
+
+.upper-face-container {
+  display: flex;
+  justify-content: center;
+  align-items: start;
+  position: relative;
+}
+
+.face-middle {
+  background-color: bisque;
+  width: 80px;
+  height: 40px;
+  display: flex;
+  gap: 15px;
+  align-items: center;
+  justify-content: center;
+}
+
+.eyes-container {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+}
+
+.eye-left,
+.eye-right {
+  background-color: black;
+  width: 12px;
+  height: 9px;
+  border-radius: 100%;
+}
+
+.face-left,
+.face-right {
+  position: relative;
+  height: 40px;
+  width: 15px;
+}
+
+.shape-circle-top {
+  background-color: rgb(254, 254, 254);
+  height: 15px;
+  width: 15px;
+  border-radius: 0 0 100% 100%;
+  position: absolute;
+  top: 0;
+}
+
+.shape-circle-middle {
+  background-color: orange;
+  height: 15px;
+  width: 15px;
+  border-radius: 100%;
+  position: absolute;
+  top: 50%;
+}
+
+.shape-circle-bottom {
+  background-color: rgb(254, 254, 254);
+  height: 15px;
+  width: 10px;
+  border-radius: 100% 100% 0 0;
+  position: absolute;
+  bottom: 0;
+}
+
+.face-left > .shape-circle-top {
+  transform: translateX(25%);
+  z-index: -1;
+}
+
+.face-left > .shape-circle-bottom {
+  right: 0;
+  transform: translateX(50%);
+  z-index: -1;
+}
+
+.face-left > .shape-circle-middle {
+  transform: translate(25%, -50%);
+  z-index: -1;
+}
+
+.face-right > .shape-circle-top {
+  transform: translateX(-25%);
+  z-index: -1;
+}
+
+.face-right > .shape-circle-bottom {
+  left: 0;
+  transform: translateX(-50%);
+  z-index: -1;
+}
+
+.face-right > .shape-circle-middle {
+  transform: translate(-25%, -50%);
+  z-index: -1;
+}
+
+.mustache-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  z-index: 5;
+}
+
+.mustache-left,
+.mustache-right {
+  background-color: lightgrey;
+  width: 50px;
+  height: 20px;
+  position: relative;
+  top: -5px;
+}
+
+.mustache-left {
+  border-radius: 20px 0 20px 4px;
+}
+
+.mustache-right {
+  border-radius: 0 20px 4px 20px;
+}
+
+.mustache-teeth {
+  background-color: white;
+  width: 20px;
+  height: 8px;
+  position: absolute;
+  top: 0;
+}
+
+.lower-face-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.lower-mouth-container {
+  width: 80px;
+  background-color: bisque;
+  height: 35px;
+  border-radius: 0 0 20px 20px;
+  position: relative;
+  top: -15px;
+  display: flex;
+  justify-content: center;
+  z-index: 3;
+}
+
+.mouth {
+  width: 35px;
+  height: 45px;
+  background-color: black;
+  clip-path: circle(50% at 50% 0);
+}
+
+.tongue {
+  background-color: red;
+  width: 20px;
+  height: 20px;
+  border-radius: 5px;
+  position: absolute;
+  top: 30%;
+  left: 50%;
+}
+.background {
+  width: 360px;
+  height: 225px;
+  background-image: repeating-linear-gradient(
+    45deg,
+    rgb(0, 72, 0) 0%,
+    rgb(0, 72, 0) 10%,
+    rgb(88, 88, 88) 10%,
+    rgb(88, 88, 88) 20%
+  );
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 0;
+  border: 5px solid white; /* Added border */
+}
+
