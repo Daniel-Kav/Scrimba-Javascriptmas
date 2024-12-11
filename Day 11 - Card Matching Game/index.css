@@ -30,10 +30,28 @@ h1 {
     font-size: 2rem;
     cursor: pointer;
     border-radius: 8px;
+    transition: transform 0.3s ease;
 }
 
 .card.revealed {
     background-color: #fff;
     color: black;
     cursor: default;
+}
+
+.card.matched {
+    background-color: #90EE90;
+    transform: rotateY(180deg);
+    transition: background-color 0.3s ease;
+}
+
+.card.no-match {
+    background-color: #FFB6C1;
+    animation: shake 0.5s;
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    20%, 60% { transform: translateX(-5px); }
+    40%, 80% { transform: translateX(5px); }
 }

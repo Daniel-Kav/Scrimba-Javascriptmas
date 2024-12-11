@@ -1,22 +1,101 @@
-const emojis = ['🎄', '🎁', '🎅', '☃️']; // Your set of emojis
+// index.js
+const emojis = ['🎄', '🎁', '🎅', '☃️'];
+const gameBoard = document.getElementById('game-board');
 
+// Duplicate and shuffle emojis
+const shuffledEmojis = [...emojis, ...emojis]
+  .sort(() => Math.random() - 0.5);
 
-/**
- *🎄 Requirements:
- * - This is a classic "Find the Pair" game with a christmas theme.
- * - The player should be able to reveal cards by clicking on them.
- * - When the player reveals one card, it should stay revealed until a second card is revealed.
- * - When the player reveals two cards:
- *   - If they are the same, they should remain revealed for the rest of the game.
- *   - If they are different, they should be flipped back to hidden.
- * - The cards should be shuffled at the start of each game.
- */
+let firstCard = null;
+let secondCard = null;
+let lockBoard = false;
+let matchedPairs = 0;
 
-/**
- * 🎅 Stretch Goals:
- * - Add a point system where points are awarded for each correctly revealed pair 
- *   and deducted for each incorrect pair (you decide the exact points for each action).
- * - Implement a high-score system using the browser's local storage.
- * - Add a "Restart Game" button that appears when the game ends so the user can start over.
- */
-  
+// Create cards
+function createBoard() {
+  shuffledEmojis.forEach((emoji, index) => {
+    const card = document.createElement('div');
+    card.classList.add('card');
+    card.dataset.emoji = emoji;
+    card.dataset.index = index;
+    card.addEventListener('click', handleCardClick);
+    gameBoard.appendChild(card);
+  });
+}
+
+function handleCardClick(event) {
+  if (lockBoard) return; // Prevent interaction during animations
+
+  const clickedCard = event.target;
+
+  // Prevent clicking the same card twice
+  if (clickedCard === firstCard || clickedCard.classList.contains('revealed')) {
+    return;
+  }
+
+  revealCard(clickedCard);
+
+  if (!firstCard) {
+    // First card clicked
+    firstCard = clickedCard;
+  } else {
+    // Second card clicked
+    secondCard = clickedCard;
+    checkMatch();
+  }
+}
+
+function revealCard(card) {
+  card.textContent = card.dataset.emoji;
+  card.classList.add('revealed');
+}
+
+function hideCard(card) {
+  card.textContent = '';
+  card.classList.remove('revealed');
+}
+
+function checkMatch() {
+  lockBoard = true;
+
+  const isMatch = firstCard.dataset.emoji === secondCard.dataset.emoji;
+
+  if (isMatch) {
+    markAsMatched();
+  } else {
+    markAsNoMatch();
+  }
+}
+
+function markAsMatched() {
+  firstCard.classList.add('matched');
+  secondCard.classList.add('matched');
+  resetSelection();
+
+  matchedPairs++;
+  if (matchedPairs === emojis.length) {
+    setTimeout(() => alert('Congratulations! You matched all pairs!'), 300);
+  }
+}
+
+function markAsNoMatch() {
+  firstCard.classList.add('no-match');
+  secondCard.classList.add('no-match');
+
+  setTimeout(() => {
+    firstCard.classList.remove('no-match');
+    secondCard.classList.remove('no-match');
+    hideCard(firstCard);
+    hideCard(secondCard);
+    resetSelection();
+  }, 1000);
+}
+
+function resetSelection() {
+  firstCard = null;
+  secondCard = null;
+  lockBoard = false;
+}
+
+// Initialize the game
+createBoard();
