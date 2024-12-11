@@ -55,3 +55,77 @@ h1 {
     20%, 60% { transform: translateX(-5px); }
     40%, 80% { transform: translateX(5px); }
 }
+
+
+/* General Styles for Score Display */
+#score-display {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: darkgreen;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+/* Restart Button */
+button {
+    background-color: darkred;
+    color: white;
+    font-size: 1rem;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 20px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+button:hover {
+    background-color: red;
+    transform: scale(1.1);
+}
+
+button:active {
+    background-color: darkred;
+    transform: scale(0.95);
+}
+
+/* Score Container */
+#score-container {
+    background-color: #ffe4e1;
+    border: 2px solid #ff0000;
+    padding: 10px;
+    border-radius: 8px;
+    text-align: center;
+    margin-bottom: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+#score-display {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: darkgreen;
+}
+
+/* Win Message */
+#win-message {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #006400;
+    text-align: center;
+    margin-top: 20px;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+}
+
+#win-message.celebrate {
+    opacity: 1;
+    animation: festive 2s infinite;
+}
+
+/* Celebrate Animation */
+@keyframes festive {
+    0% { transform: scale(1); color: darkgreen; }
+    50% { transform: scale(1.2); color: #ff0000; }
+    100% { transform: scale(1); color: darkgreen; }
+}
+
