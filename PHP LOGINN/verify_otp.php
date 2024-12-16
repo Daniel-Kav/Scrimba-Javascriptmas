@@ -1,27 +1,31 @@
 <?php
 session_start();
-require_once 'config.php';
-
 header('Content-Type: application/json');
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    if (!isset($_SESSION['user_id'])) {
-        echo json_encode(['success' => false, 'message' => 'Invalid session']);
+    $entered_otp = $_POST['otp'];
+    
+    // Check if OTP exists and hasn't expired (10 minutes validity)
+    if (!isset($_SESSION['otp']) || !isset($_SESSION['otp_time'])) {
+        echo json_encode(['success' => false, 'message' => 'No OTP request found']);
         exit;
     }
-
-    $user_id = $_SESSION['user_id'];
-    $otp = $conn->real_escape_string($_POST['otp']);
     
-    $sql = "SELECT * FROM users WHERE id = '$user_id' AND otp = '$otp' AND otp_expiry > NOW()";
-    $result = $conn->query($sql);
+    // Check if OTP has expired (10 minutes validity)
+    if (time() - $_SESSION['otp_time'] > 600) {
+        echo json_encode(['success' => false, 'message' => 'OTP has expired']);
+        exit;
+    }
     
-    if ($result->num_rows > 0) {
-        // Update user as verified
-        $conn->query("UPDATE users SET is_verified = 1, otp = NULL WHERE id = '$user_id'");
-        echo json_encode(['success' => true]);
+    // Verify OTP
+    if ($entered_otp === $_SESSION['otp']) {
+        // Clear the OTP from session
+        unset($_SESSION['otp']);
+        unset($_SESSION['otp_time']);
+        
+        echo json_encode(['success' => true, 'message' => 'Phone verified successfully']);
     } else {
-        echo json_encode(['success' => false, 'message' => 'Invalid or expired OTP']);
+        echo json_encode(['success' => false, 'message' => 'Invalid OTP']);
     }
 }
 ?> 

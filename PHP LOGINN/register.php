@@ -1,6 +1,5 @@
 <?php
 session_start();
-require_once 'config.php';
 ?>
 
 <!DOCTYPE html>
@@ -25,48 +24,45 @@ require_once 'config.php';
 </head>
 <body>
     <div class="container">
-        <h2>Register</h2>
-        <form id="registerForm">
+        <h2>Phone Verification</h2>
+        <form id="phoneForm">
             <div class="form-group">
-                <label>Name:</label>
-                <input type="text" name="name" required>
-            </div>
-            <div class="form-group">
-                <label>Email:</label>
-                <input type="email" name="email" required>
-            </div>
-            <div class="form-group">
-                <label>Phone:</label>
+                <label>Phone Number:</label>
                 <input type="tel" name="phone" required>
             </div>
-            <div class="form-group">
-                <label>Password:</label>
-                <input type="password" name="password" required>
-            </div>
-            <button type="submit">Register</button>
+            <button type="submit">Send OTP</button>
         </form>
 
         <div id="otpForm" style="display: none;">
             <h3>Enter OTP</h3>
+            <p>Simulated SMS sent to: <span id="phoneDisplay"></span></p>
             <div class="form-group">
                 <input type="text" id="otp" maxlength="6" required>
             </div>
             <button onclick="verifyOTP()">Verify OTP</button>
         </div>
+
+        <div id="successMessage" style="display: none;">
+            <h3 style="color: green;">Phone Verified Successfully! ✓</h3>
+        </div>
     </div>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
-        $('#registerForm').on('submit', function(e) {
+        $('#phoneForm').on('submit', function(e) {
             e.preventDefault();
+            const phone = $('input[name="phone"]').val();
+            
             $.ajax({
                 url: 'send_otp.php',
                 method: 'POST',
-                data: $(this).serialize(),
+                data: { phone: phone },
                 success: function(response) {
                     if(response.success) {
-                        $('#registerForm').hide();
+                        $('#phoneForm').hide();
+                        $('#phoneDisplay').text(phone);
                         $('#otpForm').show();
+                        alert('Simulated SMS: Your OTP is: ' + response.otp);
                     } else {
                         alert(response.message);
                     }
@@ -75,16 +71,16 @@ require_once 'config.php';
         });
 
         function verifyOTP() {
+            const enteredOTP = $('#otp').val();
+            
             $.ajax({
                 url: 'verify_otp.php',
                 method: 'POST',
-                data: {
-                    otp: $('#otp').val()
-                },
+                data: { otp: enteredOTP },
                 success: function(response) {
                     if(response.success) {
-                        alert('Registration successful!');
-                        window.location.href = 'login.php';
+                        $('#otpForm').hide();
+                        $('#successMessage').show();
                     } else {
                         alert(response.message);
                     }
