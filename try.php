@@ -27,8 +27,8 @@
 require_once 'vendor/autoload.php';
 use Twilio\Rest\Client;
 
-$sid    = "sid";
-$token  = "token";
+// $sid    = "sid";
+// $token  = "token";
 $twilio = new Client($sid, $token);
 
 $verification_check = $twilio->verify->v2->services("VAA")
