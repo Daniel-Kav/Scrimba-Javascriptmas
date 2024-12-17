@@ -3,12 +3,13 @@ require_once 'vendor/autoload.php'; // Include Twilio SDK
 
 use Twilio\Rest\Client;
 
+
 session_start(); // Start session to store OTP and phone number
 
 // Twilio credentials (load from environment variables for security)
-$account_sid = getenv('TWILIO_ACCOUNT_SID') ?: 'your_account_sid_here';
-$auth_token = getenv('TWILIO_AUTH_TOKEN') ?: 'your_auth_token_here';
-$twilio_number = getenv('TWILIO_PHONE_NUMBER') ?: '+254768441549';
+$account_sid = "AC132d4e0fec806ff3d83895397913f314";
+$auth_token = '8eb4ea6551346a783f319babd2275c56';
+$twilio_number = '+254768441549';
 
 if (isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] === 'POST') {
     $user_number = $_POST['phone_number']; // Retrieve phone number from form input
@@ -40,6 +41,7 @@ if (isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] === 'POST') 
     } catch (Exception $e) {
         echo "Error: " . $e->getMessage();
     }
+    var_dump($account_sid, $auth_token);
 }
 ?>
 
