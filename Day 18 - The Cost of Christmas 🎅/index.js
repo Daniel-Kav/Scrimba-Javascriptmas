@@ -19,8 +19,13 @@ Expected output: 559.93
 - Use the reduce() method to complete this challenge.
 */
 
-function calculateCost(arr){
-    // Your code here!
+function calculateCost(arr) {
+    // Use reduce to calculate the total cost of items where isGift is true
+    return arr
+        .reduce((total, item) => {
+            return item.isGift ? total + item.price : total;
+        }, 0)
+        .toFixed(2); // Ensure the result is formatted to 2 decimal places
 }
 
 console.log(calculateCost(shoppingCartData)) //559.93 
