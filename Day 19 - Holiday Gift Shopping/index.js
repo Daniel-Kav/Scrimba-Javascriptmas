@@ -36,4 +36,16 @@ const listByCheapest = sortProducts(shoppingList);
  */
 
 // Log the sorted list to the console
-console.log(listByCheapest);
+
+// Log the sorted list in a formatted way
+function logFormattedList(list) {
+    list.forEach(item => {
+        console.log(`${item.product}: $${item.price}`);
+    });
+}
+
+
+
+// Log sorted list to the console (formatted)
+console.log("Sorted Products:");
+logFormattedList(sortProducts([...shoppingList]));
