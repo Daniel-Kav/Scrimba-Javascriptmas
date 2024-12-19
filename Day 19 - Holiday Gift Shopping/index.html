@@ -1,12 +1,48 @@
 <!doctype html>
 <html>
-    <head>
-        <link rel="stylesheet" href="./styles.css" />
-    </head>
-    <body>
-        <main>
-            
-        </main>
-        <script type="module" src="index.js"></script>
-    </body>
+<head>
+    <link rel="stylesheet" href="./styles.css" />
+    <title>Holiday Gift Shopping</title>
+</head>
+<body>
+    <main>
+        <h1>🎄 Holiday Gift Shopping 🎁</h1>
+        <div id="product-container">
+            <!-- Unsorted items will be displayed here -->
+        </div>
+        <button id="sort-button">Sort Gifts by Price 🎅</button>
+    </main>
+    <footer>
+        Made with ❤️ for the holidays 🎄
+    </footer>
+    <script type="module">
+        import shoppingList from "./shoppingList.js";
+
+        const productContainer = document.getElementById("product-container");
+        const sortButton = document.getElementById("sort-button");
+
+        // Function to render the product list
+        function renderProducts(list) {
+            productContainer.innerHTML = ""; // Clear the container
+            list.forEach(item => {
+                const productItem = document.createElement("div");
+                productItem.classList.add("product-item");
+                productItem.innerHTML = `
+                    <span>${item.product}</span>
+                    <span>$${item.price.toFixed(2)}</span>
+                `;
+                productContainer.appendChild(productItem);
+            });
+        }
+
+        // Event listener for sorting the products
+        sortButton.addEventListener("click", () => {
+            const sortedList = shoppingList.sort((a, b) => a.price - b.price);
+            renderProducts(sortedList);
+        });
+
+        // Render unsorted items initially
+        renderProducts(shoppingList);
+    </script>
+</body>
 </html>
