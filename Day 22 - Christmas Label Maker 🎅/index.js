@@ -17,10 +17,16 @@ But not all of your contacts are on your Christmas list. So your task is this:
 
 import { addresses } from './addresses.js';
 
-// Sample festive icons
-const festiveIcons = ['🎄', '🎅', '❄️', '🦌', '🎁', '☃️'];
-
 const labelsContainer = document.querySelector('.labels-container');
+
+// Array of icon file names
+const festiveIcons = [
+  'bauble.png', 'bow.png', 'candy-cane.png', 'deer.png', 
+  'gifts.png', 'gingerbread-man.png', 'santa-hat.png', 
+  'santa.png', 'snowflake.png', 'snowglobe.png', 
+  'snowman.png', 'star-bauble.png', 'star.png', 
+  'stocking.png', 'tree.png', 'trees.png', 'wreath.png'
+];
 
 // Utility function to get two unique icons
 const getUniqueIcons = (icons) => {
@@ -56,7 +62,20 @@ addresses
     const [icon1, icon2] = getUniqueIcons(festiveIcons);
     const iconContainer = document.createElement('div');
     iconContainer.className = 'icons';
-    iconContainer.innerHTML = `<span>${icon1}</span><span>${icon2}</span>`;
+
+    // Create <img> elements for the icons
+    const icon1Img = document.createElement('img');
+    icon1Img.src = `./icons/${icon1}`;
+    icon1Img.alt = icon1.replace('.png', '');
+    icon1Img.className = 'icon';
+
+    const icon2Img = document.createElement('img');
+    icon2Img.src = `./icons/${icon2}`;
+    icon2Img.alt = icon2.replace('.png', '');
+    icon2Img.className = 'icon';
+
+    iconContainer.appendChild(icon1Img);
+    iconContainer.appendChild(icon2Img);
 
     // Add a custom logo
     const logo = document.createElement('div');

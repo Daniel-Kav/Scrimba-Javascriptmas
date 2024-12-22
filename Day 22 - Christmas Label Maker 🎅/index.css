@@ -1,69 +1,60 @@
-body {
-    margin: 0;
-    padding: 0;
-}
-
-main {
-    display: flex;
-    flex-wrap: wrap;
-    gap: .5em;
-    padding: .5em;
-}
-
-.label { 
-    width: 300px;
-    height: 300px;
-}
-
-
-
+/* General container styling */
 .labels-container {
     display: flex;
     flex-wrap: wrap;
-    gap: 1rem;
-    padding: 1rem;
-    background-color: #f9f9f9;
+    gap: 20px;
+    justify-content: center;
+    padding: 20px;
+    background: linear-gradient(to bottom, #ffcccc, #ff9999);
+    min-height: 100vh;
   }
   
+  /* Individual label/card styling */
   .label {
-    border: 2px solid #b71c1c;
-    border-radius: 10px;
-    padding: 1rem;
-    background-color: #fff9e6;
-    width: 240px;
+    width: 250px;
+    padding: 20px;
+    background-color: #fff;
+    border: 3px solid #008000;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
     text-align: center;
-    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
-    position: relative;
+    font-family: 'Cursive', Arial, sans-serif;
   }
   
+  /* Header (name and relation) styling */
   .label-header {
-    font-size: 1.2rem;
+    font-size: 1.5em;
     font-weight: bold;
-    color: #d32f2f;
-    margin-bottom: 0.5rem;
+    color: #008000;
+    margin-bottom: 10px;
+    font-family: 'Pacifico', cursive; /* Optional Google Font */
   }
   
-  .label-header small {
-    display: block;
-    font-size: 0.9rem;
-    color: #757575;
-  }
-  
+  /* Address details */
   .label-body {
-    font-size: 1rem;
-    color: #4e342e;
-    margin-bottom: 0.5rem;
+    color: #444;
+    font-size: 1em;
+    margin: 10px 0;
+    line-height: 1.5;
   }
   
+  /* Icon container styling */
   .icons {
-    margin-top: 0.5rem;
-    font-size: 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    margin: 10px 0;
   }
   
+  .icon {
+    width: 30px;
+    height: 30px;
+  }
+  
+  /* Custom logo styling */
   .logo {
-    margin-top: 1rem;
-    font-size: 1rem;
-    color: #2e7d32;
+    margin-top: 10px;
+    font-size: 1.2em;
+    color: #d00000;
     font-weight: bold;
   }
   
