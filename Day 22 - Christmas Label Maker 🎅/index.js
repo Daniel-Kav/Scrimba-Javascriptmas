@@ -1,34 +1,8 @@
-// import { addresses } from './addresses.js'
-/*
-Writing out labels by hand is a real pain. Luckily, you are so organised that you have all of your contacts saved in an array.
-
-But not all of your contacts are on your Christmas list. So your task is this:
-
-** Task ** 
-1. Render a label for each entry in the address book, but only if isOnChistmasList is set to true! The label should contain the recipient's name and address.
-2. Decorate the label with two festive icons from the icons folder. Use whatever colour scheme and layout you think looks good! 
-
-** Stretch goals **
-1. Ensure that the label does not get two of the same icon.
-2. Create your own CSS Christmas logo to add a personal touch to each label.
-*/
-
-// const labelsContainer = document.querySelector('.labels-container')
-
 import { addresses } from './addresses.js';
 
 const labelsContainer = document.querySelector('.labels-container');
 
-// Array of icon file names
-const festiveIcons = [
-  'bauble.png', 'bow.png', 'candy-cane.png', 'deer.png', 
-  'gifts.png', 'gingerbread-man.png', 'santa-hat.png', 
-  'santa.png', 'snowflake.png', 'snowglobe.png', 
-  'snowman.png', 'star-bauble.png', 'star.png', 
-  'stocking.png', 'tree.png', 'trees.png', 'wreath.png'
-];
-
-// Utility function to get two unique icons
+// Utility function to get two unique random icons
 const getUniqueIcons = (icons) => {
   const firstIconIndex = Math.floor(Math.random() * icons.length);
   let secondIconIndex;
@@ -38,52 +12,67 @@ const getUniqueIcons = (icons) => {
   return [icons[firstIconIndex], icons[secondIconIndex]];
 };
 
-// Generate and render labels
+// Array of available festive icons (paths to your images)
+const festiveIcons = [
+  './icons/gingerbread-man.png',
+  './icons/snowman.png',
+  './icons/tree.png',
+  './icons/star.png',
+  './icons/santa.png',
+  './icons/snowflake.png',
+];
+
+// Generate and render labels dynamically
 addresses
   .filter((entry) => entry.isOnChristmasList) // Only include those on the Christmas list
   .forEach((entry) => {
+    // Create the main label container
     const label = document.createElement('div');
     label.className = 'label';
 
-    // Add recipient details
-    label.innerHTML = `
+    // Add festive icons at the top
+    const [icon1, icon2] = getUniqueIcons(festiveIcons);
+    const topIconContainer = document.createElement('div');
+    topIconContainer.className = 'icons';
+    topIconContainer.innerHTML = `
+      <img src="${icon1}" alt="Festive Icon 1" class="icon" />
+      <img src="${icon2}" alt="Festive Icon 2" class="icon" />
+    `;
+
+    // Add recipient details (header and body)
+    const labelHeader = `
       <div class="label-header">
         <strong>${entry.name}</strong>
         <small>${entry.relation}</small>
       </div>
       <div class="label-body">
         <p>${entry['address line 1']}</p>
-        <p>${entry.town}, ${entry.state}</p>
+        <p>${entry.town}</p>
+        <p>${entry.state}</p>
         <p>${entry.country}</p>
       </div>
     `;
 
-    // Add festive icons
-    const [icon1, icon2] = getUniqueIcons(festiveIcons);
-    const iconContainer = document.createElement('div');
-    iconContainer.className = 'icons';
+    // Add festive icons at the bottom
+    const [icon3, icon4] = getUniqueIcons(festiveIcons);
+    const bottomIconContainer = document.createElement('div');
+    bottomIconContainer.className = 'icons';
+    bottomIconContainer.innerHTML = `
+      <img src="${icon3}" alt="Festive Icon 3" class="icon" />
+      <img src="${icon4}" alt="Festive Icon 4" class="icon" />
+    `;
 
-    // Create <img> elements for the icons
-    const icon1Img = document.createElement('img');
-    icon1Img.src = `./icons/${icon1}`;
-    icon1Img.alt = icon1.replace('.png', '');
-    icon1Img.className = 'icon';
-
-    const icon2Img = document.createElement('img');
-    icon2Img.src = `./icons/${icon2}`;
-    icon2Img.alt = icon2.replace('.png', '');
-    icon2Img.className = 'icon';
-
-    iconContainer.appendChild(icon1Img);
-    iconContainer.appendChild(icon2Img);
-
-    // Add a custom logo
+    // Add the custom Christmas logo
     const logo = document.createElement('div');
     logo.className = 'logo';
     logo.textContent = '🎅 Merry Christmas 🎄';
 
-    label.appendChild(iconContainer);
+    // Append all parts to the label
+    label.appendChild(topIconContainer);
+    label.innerHTML += labelHeader;
+    label.appendChild(bottomIconContainer);
     label.appendChild(logo);
 
+    // Append the label to the container
     labelsContainer.appendChild(label);
   });

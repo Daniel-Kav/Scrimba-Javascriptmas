@@ -12,6 +12,7 @@
   /* Individual label/card styling */
   .label {
     width: 250px;
+    height: 400px;
     padding: 20px;
     background-color: #fff;
     border: 3px solid #008000;
