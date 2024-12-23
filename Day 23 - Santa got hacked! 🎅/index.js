@@ -14,17 +14,15 @@ Remove 'Grinch' from santasArr and put the missing kids back in their original p
 const santasArr = ['James', 'Yi', 'Grinch', 'Fatima', 'Tariq', 'Grinch', 'Clare', 'Grinch']
 
 const missingNamesArr = ['Florinda', 'Jose', 'Gibbs']
- 
-let missingIndex = 0; // To track the index of the missingNamesArr
 
-// Iterate through the santasArr
+let missingIdx = 0;
+
 santasArr.forEach((name, index) => {
-  if (name === 'Grinch') {
-    // Replace 'Grinch' with the next missing name
-    santasArr[index] = missingNamesArr[missingIndex];
-    missingIndex++; // Move to the next missing name
-  }
-});
-
+    if(name === 'Grinch') {
+        santasArr[index] = missingNamesArr[missingIdx]
+        missingIdx++;
+    }
+})
+ 
 console.log(santasArr);
 // Expected Output: ['James', 'Yi', 'Florinda', 'Fatima', 'Tariq', 'Jose', 'Clare', 'Gibbs']
