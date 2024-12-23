@@ -15,5 +15,16 @@ const santasArr = ['James', 'Yi', 'Grinch', 'Fatima', 'Tariq', 'Grinch', 'Clare'
 
 const missingNamesArr = ['Florinda', 'Jose', 'Gibbs']
  
+let missingIndex = 0; // To track the index of the missingNamesArr
 
+// Iterate through the santasArr
+santasArr.forEach((name, index) => {
+  if (name === 'Grinch') {
+    // Replace 'Grinch' with the next missing name
+    santasArr[index] = missingNamesArr[missingIndex];
+    missingIndex++; // Move to the next missing name
+  }
+});
+
+console.log(santasArr);
 // Expected Output: ['James', 'Yi', 'Florinda', 'Fatima', 'Tariq', 'Jose', 'Clare', 'Gibbs']
