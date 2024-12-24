@@ -1,13 +1,21 @@
-import { codedMessage } from './codedMessage.js'
+import { codedMessage } from './codedMessage.js';
 
-/*
-codedMessage.js holds a coded message (well, the name makes it obvious, huh?).
+// Decode the binary message to ASCII characters
+const rawAsciiChars = codedMessage
+  .map((binary) => String.fromCharCode(parseInt(binary, 2)))
+  .join('');
 
-**Task**
-- Decode the message!
+// Apply substitution based on key.md
+const decodedMessage = codedMessage
+  .map((binary) => {
+    let ascii = parseInt(binary, 2) - 10; // Shift ASCII value by 10
+    if (ascii < 32) {
+      ascii = 128 - (32 - ascii); // Wrap around if below printable range
+    }
+    return String.fromCharCode(ascii);
+  })
+  .join('');
 
-key.md will help!
-
-**Stretch Goal**
-No stretch goal for the final day. Just stretch your legs!
-*/ 
+// Log results to the console
+// console.log('Raw ASCII Message:', rawAsciiChars);
+console.log('Decoded Message:', decodedMessage);
